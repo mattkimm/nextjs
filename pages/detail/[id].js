@@ -48,6 +48,18 @@ const Post = ({ item, name }) => {
   //   return () => {};
   // }, [id]);
 
+  const router = useRouter();
+  //console.log(router.isFallback); //처음 페이지 진입시 true , 로드 완료되면 false
+
+  if (router.isFallback) {
+    return (
+      <div style={{ padding: "100px 0" }}>
+        <Loader active inline="centered">
+          Loading
+        </Loader>
+      </div>
+    );
+  }
   return (
     <>
       {item && (
@@ -92,12 +104,20 @@ pre-rendering 하면 빌드 타임 에러가 난다.
 
 */
 export async function getStaticPaths() {
+  const apiUrl = process.env.apiUrl;
+  const res = await axios.get(apiUrl);
+  const data = res.data;
   return {
-    paths: [
-      { params: { id: "740" } },
-      { params: { id: "730" } },
-      { params: { id: "729" } },
-    ],
+    // paths: [
+    //   { params: { id: "740" } },
+    //   { params: { id: "730" } },
+    //   { params: { id: "729" } },
+    // ],
+    paths: data.slice(0, 9).map((item) => ({
+      params: {
+        id: item.id.toString(),
+      },
+    })),
     fallback: true,
   };
 }
