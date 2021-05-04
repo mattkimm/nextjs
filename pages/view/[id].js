@@ -24,7 +24,7 @@ s
 
 */
 
-const Post = ({ item }) => {
+const Post = ({ item, name }) => {
   //const router = useRouter();
   //const { id } = router.query;
 
@@ -56,6 +56,7 @@ const Post = ({ item }) => {
             <title>{item.name}</title>
             <meta name="description" content={item.description}></meta>
           </Head>
+          {name} 환경입니다.
           <Item item={item} />
         </>
       )}
@@ -83,6 +84,7 @@ export async function getServerSideProps(context) {
   return {
     props: {
       item: data,
+      name: process.env.name,
     }, // will be passed to the page component as props.
   };
 }
