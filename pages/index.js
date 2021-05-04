@@ -4,6 +4,7 @@ import Image from "next/image";
 import styles from "../styles/Home.module.css";
 import { useEffect, useState } from "react";
 import ItemList from "../src/component/ItemList";
+import { Divider, Header } from "semantic-ui-react";
 
 // _app 에서  meta 태그나 title 속성같은걸 정의할 떄는 next/head를 불러와서 사용해야한다.
 export default function Home() {
@@ -29,7 +30,15 @@ export default function Home() {
       <Head>
         <title>HOME | 코딩 </title>
       </Head>
-      <ItemList list={list} />
+      <Header as="h3" style={{ paddingTop: 40 }}>
+        베스트 상품
+      </Header>
+      <Divider />
+      <ItemList list={list.slice(0, 9)} />
+      <Header as="h3" style={{ paddingTop: 40 }}>
+        신상품
+      </Header>
+      <ItemList list={list.slice(9)} />
     </>
   );
 }

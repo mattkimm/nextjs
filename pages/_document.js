@@ -5,7 +5,7 @@ import Document, { Html, Head, Main, NextScript } from "next/document";
 
 // _app 과 _document 역할의 차이
 /*
-app은 global css 적용하거나, layout 을 잡을 수 있다.
+_app은 global css 적용하거나, layout 을 잡을 수 있다.
 반면에 document 는 서버에서만 렌더링되고 onclick 같은 eventHandler 같은 부분은 작동하지 않음.
 
 _document에서 사용하는 head랑 _app 의 head는 다르다.
