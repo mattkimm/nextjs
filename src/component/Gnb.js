@@ -19,6 +19,8 @@ function Gnb() {
     activeItem = "home";
   } else if (router.pathname === "/about") {
     activeItem = "about";
+  } else if (router.pathname === "/admin") {
+    activeItem = "admin";
   }
 
   function goLink(e, data) {
@@ -26,6 +28,8 @@ function Gnb() {
       router.push("/");
     } else if (data.name === "about") {
       router.push("/about");
+    } else if (data.name === "admin") {
+      router.push("/admin");
     }
   }
 
@@ -46,6 +50,9 @@ function Gnb() {
         }}
       >
         Contact Us
+      </Menu.Item>
+      <Menu.Item name="admin" active={activeItem === "admin"} onClick={goLink}>
+        admin
       </Menu.Item>
     </Menu>
   );
